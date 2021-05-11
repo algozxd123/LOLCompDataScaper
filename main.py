@@ -111,11 +111,18 @@ def getMatch(match_code):
     red_team_bans = []
     for i in range(5):
         red_team_bans.append(red_team_bans_imgs[i].get('alt'))
+
+    #Gold graph data
+    scripts = soup.find_all('script')
+    #Extracting the necessary value from the variable 'golddatas' in the JS of the site
+    gold_timeline_values = str(scripts[11]).split('data: [')[2].split(']')[0].split(',')[:-1]
+    gold_timeline_values = [int(x) for x in gold_timeline_values]
     
-    match_data = {'date': date, 'tournament_stage': tournament_stage, 'duration': duration, 'patch': patch, 'winner': winner}
+    match_data = {'date': date, 'tournament_stage': tournament_stage, 'duration': duration, 'patch': patch, 'winner': winner, 'gold_timeline_values': gold_timeline_values}
     blue_team_data = {'team_name': blue_team, 'kills': blue_team_kills, 'towers': blue_team_towers, 'dragons': blue_team_dragons, 'barons': blue_team_barons, 'gold': blue_team_gold, 'cloud_dragons': blue_team_cloud_dragon, 'infernal_dragons': blue_team_infernal_dragon, 'ocean_dragons': blue_team_ocean_dragon, 'mountain_dragons': blue_team_mountain_dragon, 'elder_dragons': blue_team_elder_dragon, 'first_blood': blue_team_first_blood, 'first_tower': blue_team_first_tower, 'bans': blue_team_bans}
     red_team_data = {'team_name': red_team, 'kills': red_team_kills, 'towers': red_team_towers, 'dragons': red_team_dragons, 'barons': red_team_barons, 'gold': red_team_gold, 'cloud_dragons': red_team_cloud_dragon, 'infernal_dragons': red_team_infernal_dragon, 'ocean_dragons': red_team_ocean_dragon, 'mountain_dragons': red_team_mountain_dragon, 'elder_dragons': red_team_elder_dragon, 'first_blood': red_team_first_blood, 'first_tower': red_team_first_tower, 'bans': red_team_bans}
     response = {'match_data': match_data, 'blue_team_data': blue_team_data, 'red_team_data': red_team_data}
+
 
     return response
     
