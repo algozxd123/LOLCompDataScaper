@@ -169,9 +169,21 @@ def getMatch(match_code):
     red_team_wards_destroyed = red_team_vision[0]
     red_team_wards_placed = red_team_vision[1]
 
+    #Jungle share
+    jungle_share_values_aux = str(scripts[15]).split('data:[')
+    blue_team_jungle_share = jungle_share_values_aux[1].split(']')[0].split(',')
+    blue_team_jungle_share = [float(x) for x in blue_team_jungle_share]
+    blue_team_jungle_share_at_15 = blue_team_jungle_share[0]
+    blue_team_jungle_share_end_game = blue_team_jungle_share[1]
+    
+    red_team_jungle_share = jungle_share_values_aux[2].split(']')[0].split(',')
+    red_team_jungle_share = [float(x) for x in red_team_jungle_share]
+    red_team_jungle_share_at_15 = red_team_jungle_share[0]
+    red_team_jungle_share_end_game = red_team_jungle_share[1]
+
     match_data = {'date': date, 'tournament_stage': tournament_stage, 'duration': duration, 'patch': patch, 'winner': winner, 'gold_timeline_values': gold_timeline_values}
-    blue_team_data = {'team_name': blue_team, 'kills': blue_team_kills, 'towers': blue_team_towers, 'dragons': blue_team_dragons, 'barons': blue_team_barons, 'gold': blue_team_gold, 'cloud_dragons': blue_team_cloud_dragon, 'infernal_dragons': blue_team_infernal_dragon, 'ocean_dragons': blue_team_ocean_dragon, 'mountain_dragons': blue_team_mountain_dragon, 'elder_dragons': blue_team_elder_dragon, 'first_blood': blue_team_first_blood, 'first_tower': blue_team_first_tower, 'bans': blue_team_bans, 'actions': blue_team_actions, 'gold_distribution': blue_team_gold_distribution, 'damage_distribution': blue_team_damage_distribution,'wards_destroyed': blue_team_wards_destroyed, 'wards_placed': blue_team_wards_placed}
-    red_team_data = {'team_name': red_team, 'kills': red_team_kills, 'towers': red_team_towers, 'dragons': red_team_dragons, 'barons': red_team_barons, 'gold': red_team_gold, 'cloud_dragons': red_team_cloud_dragon, 'infernal_dragons': red_team_infernal_dragon, 'ocean_dragons': red_team_ocean_dragon, 'mountain_dragons': red_team_mountain_dragon, 'elder_dragons': red_team_elder_dragon, 'first_blood': red_team_first_blood, 'first_tower': red_team_first_tower, 'bans': red_team_bans, 'actions': red_team_actions, 'gold_distribution': red_team_gold_distribution, 'damage_distribution': red_team_damage_distribution, 'wards_destroyed': red_team_wards_destroyed, 'wards_placed': red_team_wards_placed}
+    blue_team_data = {'team_name': blue_team, 'kills': blue_team_kills, 'towers': blue_team_towers, 'dragons': blue_team_dragons, 'barons': blue_team_barons, 'gold': blue_team_gold, 'cloud_dragons': blue_team_cloud_dragon, 'infernal_dragons': blue_team_infernal_dragon, 'ocean_dragons': blue_team_ocean_dragon, 'mountain_dragons': blue_team_mountain_dragon, 'elder_dragons': blue_team_elder_dragon, 'first_blood': blue_team_first_blood, 'first_tower': blue_team_first_tower, 'bans': blue_team_bans, 'actions': blue_team_actions, 'gold_distribution': blue_team_gold_distribution, 'damage_distribution': blue_team_damage_distribution,'wards_destroyed': blue_team_wards_destroyed, 'wards_placed': blue_team_wards_placed, 'jungle_share_at_15': blue_team_jungle_share_at_15, 'jungle_share_end_game': blue_team_jungle_share_end_game}
+    red_team_data = {'team_name': red_team, 'kills': red_team_kills, 'towers': red_team_towers, 'dragons': red_team_dragons, 'barons': red_team_barons, 'gold': red_team_gold, 'cloud_dragons': red_team_cloud_dragon, 'infernal_dragons': red_team_infernal_dragon, 'ocean_dragons': red_team_ocean_dragon, 'mountain_dragons': red_team_mountain_dragon, 'elder_dragons': red_team_elder_dragon, 'first_blood': red_team_first_blood, 'first_tower': red_team_first_tower, 'bans': red_team_bans, 'actions': red_team_actions, 'gold_distribution': red_team_gold_distribution, 'damage_distribution': red_team_damage_distribution, 'wards_destroyed': red_team_wards_destroyed, 'wards_placed': red_team_wards_placed, 'jungle_share_at_15': red_team_jungle_share_at_15, 'jungle_share_end_game': red_team_jungle_share_end_game}
     response = {'match_data': match_data, 'blue_team_data': blue_team_data, 'red_team_data': red_team_data}
 
     return response
