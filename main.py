@@ -147,13 +147,22 @@ def getMatch(match_code):
     red_team_gold_distribution = [int(x.replace('.','')) if (len(x)>5) else int(x.replace('.',''))*10 for x in red_team_gold_distribution]
     red_team_gold_distribution = [{'position': positions_order[i], 'gold': red_team_gold_distribution[i]} for i in range(5)]
 
+    #Damage distribution
+    damage_distribution_values_aux = str(scripts[13]).split('data: [')
+    blue_team_damage_distribution = damage_distribution_values_aux[1].split(']')[0].split(',')
+    blue_team_damage_distribution = [int(x.replace('.','')) if (len(x)>5) else int(x.replace('.',''))*10 for x in blue_team_damage_distribution]
+    blue_team_damage_distribution = [{'position': positions_order[i], 'damage': blue_team_damage_distribution[i]} for i in range(5)]
+    
+    red_team_damage_distribution = damage_distribution_values_aux[2].split(']')[0].split(',')
+    red_team_damage_distribution = [int(x.replace('.','')) if (len(x)>5) else int(x.replace('.',''))*10 for x in red_team_damage_distribution]
+    red_team_damage_distribution = [{'position': positions_order[i], 'damage': red_team_damage_distribution[i]} for i in range(5)]
 
     match_data = {'date': date, 'tournament_stage': tournament_stage, 'duration': duration, 'patch': patch, 'winner': winner, 'gold_timeline_values': gold_timeline_values}
-    blue_team_data = {'team_name': blue_team, 'kills': blue_team_kills, 'towers': blue_team_towers, 'dragons': blue_team_dragons, 'barons': blue_team_barons, 'gold': blue_team_gold, 'cloud_dragons': blue_team_cloud_dragon, 'infernal_dragons': blue_team_infernal_dragon, 'ocean_dragons': blue_team_ocean_dragon, 'mountain_dragons': blue_team_mountain_dragon, 'elder_dragons': blue_team_elder_dragon, 'first_blood': blue_team_first_blood, 'first_tower': blue_team_first_tower, 'bans': blue_team_bans, 'actions': blue_team_actions, 'gold_distribution': blue_team_gold_distribution}
-    red_team_data = {'team_name': red_team, 'kills': red_team_kills, 'towers': red_team_towers, 'dragons': red_team_dragons, 'barons': red_team_barons, 'gold': red_team_gold, 'cloud_dragons': red_team_cloud_dragon, 'infernal_dragons': red_team_infernal_dragon, 'ocean_dragons': red_team_ocean_dragon, 'mountain_dragons': red_team_mountain_dragon, 'elder_dragons': red_team_elder_dragon, 'first_blood': red_team_first_blood, 'first_tower': red_team_first_tower, 'bans': red_team_bans, 'actions': red_team_actions, 'gold_distribution': red_team_gold_distribution}
+    blue_team_data = {'team_name': blue_team, 'kills': blue_team_kills, 'towers': blue_team_towers, 'dragons': blue_team_dragons, 'barons': blue_team_barons, 'gold': blue_team_gold, 'cloud_dragons': blue_team_cloud_dragon, 'infernal_dragons': blue_team_infernal_dragon, 'ocean_dragons': blue_team_ocean_dragon, 'mountain_dragons': blue_team_mountain_dragon, 'elder_dragons': blue_team_elder_dragon, 'first_blood': blue_team_first_blood, 'first_tower': blue_team_first_tower, 'bans': blue_team_bans, 'actions': blue_team_actions, 'gold_distribution': blue_team_gold_distribution, 'damage_distribution': blue_team_damage_distribution}
+    red_team_data = {'team_name': red_team, 'kills': red_team_kills, 'towers': red_team_towers, 'dragons': red_team_dragons, 'barons': red_team_barons, 'gold': red_team_gold, 'cloud_dragons': red_team_cloud_dragon, 'infernal_dragons': red_team_infernal_dragon, 'ocean_dragons': red_team_ocean_dragon, 'mountain_dragons': red_team_mountain_dragon, 'elder_dragons': red_team_elder_dragon, 'first_blood': red_team_first_blood, 'first_tower': red_team_first_tower, 'bans': red_team_bans, 'actions': red_team_actions, 'gold_distribution': red_team_gold_distribution, 'damage_distribution': red_team_damage_distribution}
     response = {'match_data': match_data, 'blue_team_data': blue_team_data, 'red_team_data': red_team_data}
 
-
+    print(response)
     return response
     
 getMatch('31260')
